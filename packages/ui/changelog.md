@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.3 (2026-11-27)
+
+### Features
+
+* give the Drawer a fixed radius and a radius prop ([a683460](https://github.com/alizahid/basedkit/commit/a683460d86343b49bd68902b1bb85609f91c1ee5))
+* round a Toolbar's controls to follow its corners ([9397ee6](https://github.com/alizahid/basedkit/commit/9397ee6f3366ee02bc3e547939a48d06f409dc3f))
+
+### Bug Fixes
+
+* keep the Avatar square when a flex row stretches it ([4519562](https://github.com/alizahid/basedkit/commit/45195629e19afda510a3ac8515f6bd8a88f37093))
+
 ## 0.3.2 (2026-11-18)
 
 ### Features
