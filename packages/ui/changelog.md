@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.3 (2026-11-27)
+
+### Features
+
+* lay out Drawer.Content as a flex column ([f52a705](https://github.com/alizahid/basedkit/commit/f52a7051847fa275c6b0e235860e920ad70c0410))
+* make links in a Callout high contrast by default ([4dd379c](https://github.com/alizahid/basedkit/commit/4dd379cb9bd4160236e86942d5ed33b920770a8d))
+
+### Bug Fixes
+
+* let an Inset reach the edges of a Drawer ([9104873](https://github.com/alizahid/basedkit/commit/910487374b988f9cc9ac3e3514ebbeece83e03a8))
+
 ## 0.4.2 (2026-11-27)
 
 ### Features
