@@ -138,6 +138,38 @@ export const useFruits = () => ({ apple: useText('common.apple'), banana: useTex
   </Drawer.Root>
 </Example>
 
+### <Text id="common.radius" />
+
+<Example>
+  <Drawer.Root>
+    <Drawer.Trigger render={<Button variant="soft" />}>none</Drawer.Trigger>
+    <Drawer.Content radius="none">
+      <Drawer.Title><Text id="drawer.drawer" /></Drawer.Title>
+      <div className="mt-4 flex justify-end">
+        <Drawer.Close render={<Button color="gray" variant="soft" />}><Text id="common.close" /></Drawer.Close>
+      </div>
+    </Drawer.Content>
+  </Drawer.Root>
+  <Drawer.Root>
+    <Drawer.Trigger render={<Button variant="soft" />}>md</Drawer.Trigger>
+    <Drawer.Content radius="md">
+      <Drawer.Title><Text id="drawer.drawer" /></Drawer.Title>
+      <div className="mt-4 flex justify-end">
+        <Drawer.Close render={<Button color="gray" variant="soft" />}><Text id="common.close" /></Drawer.Close>
+      </div>
+    </Drawer.Content>
+  </Drawer.Root>
+  <Drawer.Root>
+    <Drawer.Trigger render={<Button variant="soft" />}>2xl</Drawer.Trigger>
+    <Drawer.Content radius="2xl">
+      <Drawer.Title><Text id="drawer.drawer" /></Drawer.Title>
+      <div className="mt-4 flex justify-end">
+        <Drawer.Close render={<Button color="gray" variant="soft" />}><Text id="common.close" /></Drawer.Close>
+      </div>
+    </Drawer.Content>
+  </Drawer.Root>
+</Example>
+
 ### <Text id="drawer.nested" />
 
 <Example>

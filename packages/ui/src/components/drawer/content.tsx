@@ -7,6 +7,7 @@ import {
 import * as stylex from '@stylexjs/stylex'
 import { type CSSProperties, use } from 'react'
 
+import { type RadiusToken } from '#lib/radii.js'
 import { merge } from '#lib/stylex.js'
 import { ThemeContext } from '#lib/theme.js'
 
@@ -14,6 +15,8 @@ export type DrawerContentProps = DrawerPopupProps & {
   className?: string
   // floats off the edges of the screen on larger screens
   inset?: boolean
+  // the corners. not scaled by the provider's `radius`
+  radius?: Exclude<RadiusToken, 'full'>
   // the width of a drawer on the start or end side
   size?: '1' | '2' | '3' | '4'
   style?: CSSProperties
@@ -23,6 +26,7 @@ export function Content({
   children,
   className,
   inset = true,
+  radius = 'lg',
   size = '2',
   style,
   ...props
@@ -36,7 +40,12 @@ export function Content({
 
         <Component.Viewport
           ref={place}
-          {...stylex.props(styles.viewport, sizes[size], inset && styles.inset)}
+          {...stylex.props(
+            styles.viewport,
+            sizes[size],
+            inset && styles.inset,
+            radii[radius],
+          )}
         >
           {/* portaled out of the provider's element, so its colors are set
               again for everything inside */}
@@ -309,7 +318,7 @@ const styles = stylex.create({
       default: 'calc(var(--ui-spacing) * 32)',
     },
     '--drawer-edge-radius': {
-      [large]: 'var(--ui-radius-2xl)',
+      [large]: 'var(--drawer-radius)',
       default: '0px',
     },
     '--drawer-inset': {
@@ -336,19 +345,19 @@ const styles = stylex.create({
     // the corners at the screen's edge are only round when inset; the others
     // of a top or bottom drawer always are
     borderEndEndRadius: {
-      [up]: 'var(--ui-radius-2xl)',
+      [up]: 'var(--drawer-radius)',
       default: 'var(--drawer-edge-radius)',
     },
     borderEndStartRadius: {
-      [up]: 'var(--ui-radius-2xl)',
+      [up]: 'var(--drawer-radius)',
       default: 'var(--drawer-edge-radius)',
     },
     borderStartEndRadius: {
-      [down]: 'var(--ui-radius-2xl)',
+      [down]: 'var(--drawer-radius)',
       default: 'var(--drawer-edge-radius)',
     },
     borderStartStartRadius: {
-      [down]: 'var(--ui-radius-2xl)',
+      [down]: 'var(--drawer-radius)',
       default: 'var(--drawer-edge-radius)',
     },
     // slabs of the panel past the screen's edges, so dragging the drawer the
@@ -458,9 +467,9 @@ const styles = stylex.create({
     '--drawer-bleed': 'calc(var(--ui-spacing) * 32)',
     '--drawer-edge-radius': '0px',
     '--drawer-inset': '0px',
-    // how much of a drawer shows behind the one above it
     '--drawer-peek':
       'clamp(calc(var(--ui-spacing) * 4), 2.5vw, calc(var(--ui-spacing) * 8))',
+    // how much of a drawer shows behind the one above it
     '--drawer-ring': '1px',
     // ios: how far past the screen's edge a closed drawer goes, to be out
     // from under safari's bars as well
@@ -515,5 +524,38 @@ const sizes = stylex.create({
       [large]: 'calc(var(--ui-spacing) * 160)',
       default: '100%',
     },
+  },
+})
+
+// the theme's radii before the provider's `radius` scales them: a drawer's
+// corners stay as they are
+// biome-ignore assist/source/useSortedKeys: in order of size
+const radii = stylex.create({
+  none: {
+    '--drawer-radius': '0px',
+  },
+  xs: {
+    '--drawer-radius': 'var(--radius-xs, 0.125rem)',
+  },
+  sm: {
+    '--drawer-radius': 'var(--radius-sm, 0.25rem)',
+  },
+  md: {
+    '--drawer-radius': 'var(--radius-md, 0.375rem)',
+  },
+  lg: {
+    '--drawer-radius': 'var(--radius-lg, 0.5rem)',
+  },
+  xl: {
+    '--drawer-radius': 'var(--radius-xl, 0.75rem)',
+  },
+  '2xl': {
+    '--drawer-radius': 'var(--radius-2xl, 1rem)',
+  },
+  '3xl': {
+    '--drawer-radius': 'var(--radius-3xl, 1.5rem)',
+  },
+  '4xl': {
+    '--drawer-radius': 'var(--radius-4xl, 2rem)',
   },
 })
