@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.2 (2026-11-27)
+
+### Features
+
+* add align to Table.Root and Table.Row ([cc98792](https://github.com/alizahid/basedkit/commit/cc9879297e80ccbcc7310496a04d2bd054796762))
+
+### Bug Fixes
+
+* hide the popup of a Select with no items ([aed61c0](https://github.com/alizahid/basedkit/commit/aed61c066800cccc640e26fe2b35ad86bc2a9c8e))
+
 ## 0.4.1 (2026-11-27)
 
 ### Features
