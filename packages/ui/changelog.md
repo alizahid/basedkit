@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 (2026-11-27)
+
+### Features
+
+* add a footer slot to Combobox.Content ([33b8c39](https://github.com/alizahid/basedkit/commit/33b8c399b3b9ee0386927f376e2c8a2749c580e6))
+
 ## 0.4.0 (2026-11-27)
 
 ### Features
