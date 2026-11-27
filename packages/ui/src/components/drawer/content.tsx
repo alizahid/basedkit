@@ -217,6 +217,10 @@ const styles = stylex.create({
     },
   },
   content: {
+    // a column, so that what is inside can take the height left over
+    // (flex-1) or sit at the end of the drawer (mt-auto)
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
     // only an empty strip of a drawer shows behind another
     opacity: {
