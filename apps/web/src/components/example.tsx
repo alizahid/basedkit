@@ -1,9 +1,8 @@
-import { readdir, readFile } from 'node:fs/promises'
-
 import { cn } from 'cn'
 import { getTranslations } from 'next-intl/server'
-import { type ComponentProps, cache } from 'react'
+import { type ComponentProps } from 'react'
 
+import { expand } from '@/content/demos'
 import { fill } from '@/intl/fill'
 
 import { Code } from './code'
@@ -15,28 +14,9 @@ type Props = ComponentProps<'div'> & {
   orientation?: 'horizontal' | 'vertical'
 }
 
-const component = /^export function (?<name>\w+)/mu
-
-// the demo components: the name of each, and its file. one component a file,
-// so that an example shows only the one it uses
-const demos = cache(async () => {
-  const folder = 'src/components/demos'
-
-  return Promise.all(
-    (await readdir(folder)).map(async (file) => {
-      const code = await readFile(`${folder}/${file}`, 'utf8')
-
-      return {
-        code: `// ${file}\n${code.trim()}`,
-        name: code.match(component)?.groups?.name,
-      }
-    }),
-  )
-})
-
-// a live preview with its code underneath. an example that only renders a
-// demo component is one line that says nothing, so the demo's file follows
-// it. vertical stacks larger components instead of wrapping them
+// a live preview with its code underneath, and under that the file of any
+// demo component it uses. vertical stacks larger components instead of
+// wrapping them
 export async function Example({
   code,
   orientation = 'horizontal',
@@ -45,12 +25,7 @@ export async function Example({
   const t = await getTranslations()
 
   const source = code
-    ? [
-        fill(code, (id) => t(id as Parameters<typeof t>[0])),
-        ...(await demos())
-          .filter((demo) => new RegExp(`<${demo.name}\\b`, 'u').test(code))
-          .map((demo) => demo.code),
-      ].join('\n\n')
+    ? await expand(fill(code, (id) => t(id as Parameters<typeof t>[0])))
     : undefined
 
   const html = source ? await highlight(source, 'tsx') : undefined
