@@ -224,10 +224,11 @@ const contrast = stylex.create({
   },
 })
 
+// in a surface Toolbar the radius is the toolbar's, less half its padding
 const sizes = stylex.create({
   1: {
-    '--outer-radius': 'var(--ui-radius-sm)',
-    borderRadius: 'var(--ui-radius-sm)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
     fontSize: 'var(--ui-text-xs)',
     gap: 'var(--ui-spacing)',
     height: 'calc(var(--ui-spacing) * 6)',
@@ -235,8 +236,8 @@ const sizes = stylex.create({
     paddingInline: 'calc(var(--ui-spacing) * 2)',
   },
   2: {
-    '--outer-radius': 'var(--ui-radius-sm)',
-    borderRadius: 'var(--ui-radius-sm)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
     fontSize: 'var(--ui-text-sm)',
     gap: 'calc(var(--ui-spacing) * 2)',
     height: 'calc(var(--ui-spacing) * 8)',
@@ -244,8 +245,8 @@ const sizes = stylex.create({
     paddingInline: 'calc(var(--ui-spacing) * 3)',
   },
   3: {
-    '--outer-radius': 'var(--ui-radius-md)',
-    borderRadius: 'var(--ui-radius-md)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-md))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-md))',
     fontSize: 'var(--ui-text-base)',
     gap: 'calc(var(--ui-spacing) * 3)',
     height: 'calc(var(--ui-spacing) * 10)',
@@ -253,8 +254,8 @@ const sizes = stylex.create({
     paddingInline: 'calc(var(--ui-spacing) * 4)',
   },
   4: {
-    '--outer-radius': 'var(--ui-radius-lg)',
-    borderRadius: 'var(--ui-radius-lg)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-lg))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-lg))',
     fontSize: 'var(--ui-text-lg)',
     gap: 'calc(var(--ui-spacing) * 3)',
     height: 'calc(var(--ui-spacing) * 12)',

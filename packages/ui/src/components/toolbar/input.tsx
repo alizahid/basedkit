@@ -54,7 +54,16 @@ export function Input({
           color={color}
           radius={radius}
           size={size}
-          style={style}
+          // in a surface toolbar, unless it is given a radius of its own
+          style={
+            radius
+              ? style
+              : {
+                  borderRadius:
+                    'var(--toolbar-inner-radius, var(--outer-radius))',
+                  ...style,
+                }
+          }
           variant={variant}
         >
           {children}

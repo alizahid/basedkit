@@ -150,10 +150,11 @@ export const triggerVariants = stylex.create({
   },
 })
 
+// in a surface Toolbar the radius is the toolbar's, less half its padding
 export const triggerSizes = stylex.create({
   1: {
-    '--outer-radius': 'var(--ui-radius-sm)',
-    borderRadius: 'var(--ui-radius-sm)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
     fontSize: 'var(--ui-text-xs)',
     gap: 'var(--ui-spacing)',
     height: 'calc(var(--ui-spacing) * 6)',
@@ -161,8 +162,8 @@ export const triggerSizes = stylex.create({
     paddingInline: 'calc(var(--ui-spacing) * 2)',
   },
   2: {
-    '--outer-radius': 'var(--ui-radius-sm)',
-    borderRadius: 'var(--ui-radius-sm)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
     fontSize: 'var(--ui-text-sm)',
     gap: 'calc(var(--ui-spacing) * 1.5)',
     height: 'calc(var(--ui-spacing) * 8)',
@@ -170,8 +171,8 @@ export const triggerSizes = stylex.create({
     paddingInline: 'calc(var(--ui-spacing) * 3)',
   },
   3: {
-    '--outer-radius': 'var(--ui-radius-md)',
-    borderRadius: 'var(--ui-radius-md)',
+    '--outer-radius': 'var(--toolbar-inner-radius, var(--ui-radius-md))',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-md))',
     fontSize: 'var(--ui-text-base)',
     gap: 'calc(var(--ui-spacing) * 2)',
     height: 'calc(var(--ui-spacing) * 10)',

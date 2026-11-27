@@ -26,7 +26,7 @@ export function Link({ className, style, ...props }: ToolbarLinkProps) {
 
 const styles = stylex.create({
   main: {
-    borderRadius: 'var(--ui-radius-sm)',
+    borderRadius: 'var(--toolbar-inner-radius, var(--ui-radius-sm))',
     color: {
       ':hover': {
         '@media (hover: hover)': 'var(--gray-12)',

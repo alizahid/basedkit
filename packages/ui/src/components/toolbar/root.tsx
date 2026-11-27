@@ -53,6 +53,11 @@ const styles = stylex.create({
 
 const variants = stylex.create({
   surface: {
+    // for the controls hugging the edge: the toolbar's radius less half the
+    // padding around them, so they and their focus rings follow the
+    // toolbar's corners. read by Button, the triggers and the input
+    '--toolbar-inner-radius':
+      'calc(var(--ui-radius-lg) - var(--ui-spacing) / 2)',
     backgroundColor: 'var(--panel-background)',
     borderRadius: 'var(--ui-radius-lg)',
     boxShadow: 'inset 0 0 0 1px var(--gray-a6)',
