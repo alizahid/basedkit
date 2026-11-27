@@ -33,6 +33,7 @@ export function Link({
       ...merge(
         stylex.props(
           styles.main,
+          color && styles.colored,
           // auto is hover, plus the underline high contrast adds below
           underlines[underline === 'auto' ? 'hover' : underline],
           highContrast && styles.contrast,
@@ -52,6 +53,10 @@ const hover = ':is(:hover:not(:focus-visible))'
 
 // ported from radix themes' link.css
 const styles = stylex.create({
+  // a link with a color of its own keeps it, whatever it is in
+  colored: {
+    '--link-default-color': 'initial',
+  },
   contrast: {
     '--link-color': 'var(--accent-12)',
   },
@@ -59,7 +64,8 @@ const styles = stylex.create({
     // for the focus ring. it is a line of text, so it follows the provider's
     // radius down to square but no further up than the default
     borderRadius: 'min(var(--ui-radius-sm), var(--ui-spacing))',
-    color: 'var(--link-color, var(--accent-a11))',
+    // the defaults are for a container to set, as Callout does
+    color: 'var(--link-color, var(--link-default-color, var(--accent-a11)))',
     cursor: {
       ':is(:disabled, [data-disabled])': 'default',
       default: 'pointer',
@@ -70,7 +76,7 @@ const styles = stylex.create({
     },
     outlineOffset: 2,
     textDecorationColor:
-      'var(--link-decoration, color-mix(in oklab, var(--accent-a5), var(--gray-a6)))',
+      'var(--link-decoration, var(--link-default-decoration, color-mix(in oklab, var(--accent-a5), var(--gray-a6))))',
     // the focus ring stands in for the underline
     textDecorationLine: {
       [focus]: 'none',
@@ -99,7 +105,7 @@ const underlines = stylex.create({
   },
   hover: {
     '--link-hover': 'underline',
-    '--link-rest': 'none',
+    '--link-rest': 'var(--link-default-rest, none)',
   },
   none: {
     '--link-hover': 'none',

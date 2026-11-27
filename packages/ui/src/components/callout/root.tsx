@@ -51,6 +51,12 @@ const styles = stylex.create({
     color: 'var(--accent-12)',
   },
   main: {
+    // a link inside is high contrast unless it says otherwise: its own
+    // color is the callout's text color, so it would only show on hover
+    '--link-default-color': 'var(--accent-12)',
+    '--link-default-decoration':
+      'color-mix(in oklab, var(--accent-a6), var(--gray-a6))',
+    '--link-default-rest': 'underline',
     alignItems: 'flex-start',
     color: 'var(--accent-a11)',
     display: 'grid',
