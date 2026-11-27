@@ -182,6 +182,33 @@ export const generateMetadata = title('table')
   </Table.Root>
 </Example>
 
+### <Text id="table.align" />
+
+<Example orientation="vertical">
+  <Table.Root className="w-full max-w-xl" variant="surface">
+    <Table.Header>
+      <Table.Row>
+        <Table.ColumnHeaderCell><Text id="table.full-name" /></Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell><Text id="common.email" /></Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell><Text id="table.group" /></Table.ColumnHeaderCell>
+      </Table.Row>
+    </Table.Header>
+
+    <Table.Body>
+      <Table.Row>
+        <Table.RowHeaderCell><div className="flex items-center gap-2"><Avatar fallback="D" radius="full" size="3" />Danilo Sousa</div></Table.RowHeaderCell>
+        <Table.Cell>danilo@example.com</Table.Cell>
+        <Table.Cell><Text id="table.developer" /></Table.Cell>
+      </Table.Row>
+      <Table.Row align="start">
+        <Table.RowHeaderCell><div className="flex items-center gap-2"><Avatar fallback="Z" radius="full" size="3" />Zahra Ambessa</div></Table.RowHeaderCell>
+        <Table.Cell>zahra@example.com</Table.Cell>
+        <Table.Cell><Text id="table.admin" /></Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table.Root>
+</Example>
+
 ### <Text id="table.with-other-components" />
 
 <Example orientation="vertical">

@@ -1935,6 +1935,11 @@
       "name": "Table.Root",
       "props": [
         {
+          "default": "'center'",
+          "name": "align",
+          "type": "'center' | 'end' | 'start' | 'baseline'"
+        },
+        {
           "default": "'auto'",
           "name": "layout",
           "type": "'auto' | 'fixed'"
@@ -1969,7 +1974,12 @@
     },
     {
       "name": "Table.Row",
-      "props": []
+      "props": [
+        {
+          "name": "align",
+          "type": "'center' | 'end' | 'start' | 'baseline'"
+        }
+      ]
     },
     {
       "name": "Table.RowHeaderCell",

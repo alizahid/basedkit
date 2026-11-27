@@ -3,7 +3,10 @@ import { type ComponentProps } from 'react'
 
 import { merge } from '#lib/stylex.js'
 
+import { type Align, aligns } from './styles.js'
+
 export type TableRootProps = ComponentProps<'div'> & {
+  align?: Align
   layout?: 'auto' | 'fixed'
   size?: '1' | '2' | '3'
   variant?: 'surface' | 'ghost'
@@ -13,6 +16,7 @@ export type TableRootProps = ComponentProps<'div'> & {
 // inside is as wide as the table, so a surface table's border scrolls with
 // it. the options only set variables; the box and cells read them
 export function Root({
+  align = 'center',
   children,
   className,
   layout = 'auto',
@@ -25,7 +29,12 @@ export function Root({
     <div
       {...props}
       {...merge(
-        stylex.props(styles.main, variants[variant], sizes[size]),
+        stylex.props(
+          styles.main,
+          variants[variant],
+          sizes[size],
+          aligns[align],
+        ),
         className,
         style,
       )}

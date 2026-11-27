@@ -519,6 +519,7 @@
   },
   "table": {
     "active": "Aktiv",
+    "align": "Ausrichtung",
     "admin": "Admin",
     "developer": "Entwicklung",
     "full-name": "Name",

@@ -4,6 +4,26 @@ import * as stylex from '@stylexjs/stylex'
 const header = ':is(thead *)'
 const last = ':is(tbody > tr:last-child > *)'
 
+export type Align = 'start' | 'center' | 'end' | 'baseline'
+
+// where the cells sit in a row taller than they are: the middle unless the
+// root says otherwise. set on the root for the whole table or on a row for
+// its own cells, and read by the cells
+export const aligns = stylex.create({
+  baseline: {
+    '--table-align': 'baseline',
+  },
+  center: {
+    '--table-align': 'middle',
+  },
+  end: {
+    '--table-align': 'bottom',
+  },
+  start: {
+    '--table-align': 'top',
+  },
+})
+
 // shared by the three kinds of cell. the line under a row is drawn by its
 // cells; the last row of a surface table has none
 export const cell = stylex.create({
@@ -35,6 +55,6 @@ export const cell = stylex.create({
       default: null,
     },
     textAlign: 'start',
-    verticalAlign: 'top',
+    verticalAlign: 'var(--table-align)',
   },
 })

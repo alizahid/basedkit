@@ -519,6 +519,7 @@
   },
   "table": {
     "active": "نشط",
+    "align": "المحاذاة",
     "admin": "مدير",
     "developer": "مطوّر",
     "full-name": "الاسم الكامل",
