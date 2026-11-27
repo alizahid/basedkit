@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0 (2026-11-27)
+
+### Features
+
+* add Overlay and LoadingOverlay ([0e93b29](https://github.com/alizahid/basedkit/commit/0e93b29a5894dc5afaeae8c03886dd6ed2bb8f42))
+
 ## 0.3.3 (2026-11-27)
 
 ### Features
