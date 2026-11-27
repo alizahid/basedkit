@@ -46,7 +46,7 @@ export function Content({
         align={align}
         side={side}
         sideOffset={sideOffset}
-        {...stylex.props(panel.positioner)}
+        {...stylex.props(panel.positioner, styles.positioner)}
       >
         {/* portaled out of the provider's element, so its colors are set again */}
         <Component.Popup
@@ -132,5 +132,12 @@ const styles = stylex.create({
   },
   flip: {
     transform: 'scaleY(-1)',
+  },
+  // a select with nothing to pick shows no popup, as in radix
+  positioner: {
+    display: {
+      ':not(:has([role="option"]))': 'none',
+      default: null,
+    },
   },
 })
