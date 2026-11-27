@@ -1,0 +1,25 @@
+import { useText } from '@/components/text'
+import { title } from '@/intl/metadata'
+
+export const generateMetadata = title('loading-overlay')
+
+# <Text id="nav.loading-overlay" />
+
+## <Text id="common.examples" />
+
+### <Text id="common.basic" />
+
+<Example>
+  <LoadingOverlayDemo email={useText('common.email')} name={useText('common.name')} save={useText('common.save')} />
+</Example>
+
+### <Text id="common.size" />
+
+<Example>
+  <Card className="relative size-24"><LoadingOverlay size="1" /></Card>
+  <Card className="relative size-24"><LoadingOverlay size="2" /></Card>
+  <Card className="relative size-24"><LoadingOverlay size="3" /></Card>
+  <Card className="relative size-24"><LoadingOverlay size="4" /></Card>
+</Example>
+
+<Props page="loading-overlay" />

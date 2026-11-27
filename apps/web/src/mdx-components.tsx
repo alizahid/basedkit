@@ -22,10 +22,12 @@ import {
   Kbd,
   KbdGroup,
   Link,
+  LoadingOverlay,
   Menu,
   NavigationMenu,
   NumberField,
   OTPField,
+  Overlay,
   Popover,
   PreviewCard,
   Progress,
@@ -57,6 +59,7 @@ import { type MDXComponents } from 'mdx/types'
 
 import { AsyncCombobox, CollapsedCombobox } from './components/demos/combobox'
 import { CommandBarDemo } from './components/demos/command-bar'
+import { LoadingOverlayDemo } from './components/demos/loading-overlay'
 import { PhoneFieldDemo } from './components/demos/phone-field'
 import { CollapsedSelect } from './components/demos/select'
 import { StepperDemo } from './components/demos/stepper'
@@ -100,8 +103,11 @@ const components: MDXComponents = {
   Kbd,
   KbdGroup,
   Link,
+  LoadingOverlay,
+  LoadingOverlayDemo,
   NumberField,
   OTPField,
+  Overlay,
   PhoneField,
   PhoneFieldDemo,
   Props,

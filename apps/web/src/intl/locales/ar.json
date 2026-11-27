@@ -301,10 +301,12 @@
     "inset": "الإزاحة الداخلية",
     "kbd": "مفتاح",
     "link": "الرابط",
+    "loading-overlay": "طبقة التحميل",
     "menu": "القائمة",
     "navigation-menu": "قائمة التنقل",
     "number-field": "حقل الأرقام",
     "otp-field": "حقل رمز التحقق",
+    "overlay": "طبقة التغطية",
     "overview": "نظرة عامة",
     "phone-field": "حقل الهاتف",
     "popover": "نافذة منبثقة",
@@ -371,6 +373,10 @@
     "pin": "الرمز السري",
     "that-code-is-not-right": "هذا الرمز غير صحيح.",
     "verification-code": "رمز التحقق"
+  },
+  "overlay": {
+    "upgrade": "ترقية",
+    "upgrade-to-see-this-report": "قم بالترقية لعرض هذا التقرير"
   },
   "phone-field": {
     "country": "الدولة",

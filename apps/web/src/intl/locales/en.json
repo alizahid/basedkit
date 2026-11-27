@@ -301,10 +301,12 @@
     "inset": "Inset",
     "kbd": "Kbd",
     "link": "Link",
+    "loading-overlay": "Loading Overlay",
     "menu": "Menu",
     "navigation-menu": "Navigation Menu",
     "number-field": "Number Field",
     "otp-field": "OTP Field",
+    "overlay": "Overlay",
     "overview": "Overview",
     "phone-field": "Phone Field",
     "popover": "Popover",
@@ -371,6 +373,10 @@
     "pin": "PIN",
     "that-code-is-not-right": "That code is not right.",
     "verification-code": "Verification code"
+  },
+  "overlay": {
+    "upgrade": "Upgrade",
+    "upgrade-to-see-this-report": "Upgrade to see this report"
   },
   "phone-field": {
     "country": "Country",

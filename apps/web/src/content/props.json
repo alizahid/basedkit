@@ -802,6 +802,11 @@
           "type": "boolean"
         },
         {
+          "default": "'lg'",
+          "name": "radius",
+          "type": "'xs' | 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'"
+        },
+        {
           "default": "'2'",
           "name": "size",
           "type": "'1' | '2' | '3' | '4'"
@@ -987,6 +992,23 @@
           "default": "'auto'",
           "name": "underline",
           "type": "'always' | 'auto' | 'hover' | 'none'"
+        }
+      ]
+    }
+  ],
+  "loading-overlay": [
+    {
+      "name": "LoadingOverlay",
+      "props": [
+        {
+          "default": "'3'",
+          "name": "size",
+          "type": "'1' | '2' | '3' | '4'"
+        },
+        {
+          "default": "true",
+          "name": "visible",
+          "type": "boolean"
         }
       ]
     }
@@ -1226,6 +1248,18 @@
           "default": "'surface'",
           "name": "variant",
           "type": "'surface' | 'soft'"
+        }
+      ]
+    }
+  ],
+  "overlay": [
+    {
+      "name": "Overlay",
+      "props": [
+        {
+          "default": "true",
+          "name": "visible",
+          "type": "boolean"
         }
       ]
     }
