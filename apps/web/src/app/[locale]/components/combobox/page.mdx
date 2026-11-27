@@ -157,6 +157,20 @@ export const useFruits = () => ([
   </Combobox.Root>
 </Example>
 
+### <Text id="combobox.footer" />
+
+<Example>
+  <Combobox.Root items={useFruits()}>
+    <Combobox.Input placeholder={useText('common.pick-a-fruit')} />
+    <Combobox.Content empty={useText('combobox.no-fruits-found')} footer={<Link href="#all-fruits">{useText('combobox.view-all-fruits')}</Link>} />
+  </Combobox.Root>
+
+  <Combobox.Root items={useFruits()}>
+    <Combobox.Trigger placeholder={useText('common.pick-a-fruit')} />
+    <Combobox.Content empty={useText('combobox.no-fruits-found')} footer={<Link href="#all-fruits">{useText('combobox.view-all-fruits')}</Link>} search={<Combobox.Search placeholder={useText('common.search')} />} />
+  </Combobox.Root>
+</Example>
+
 ### <Text id="common.collapsed-value" />
 
 <Example>

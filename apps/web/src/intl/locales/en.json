@@ -70,6 +70,7 @@
     "apricot": "Apricot",
     "async": "Async",
     "blueberry": "Blueberry",
+    "footer": "Footer",
     "grape": "Grape",
     "lemon": "Lemon",
     "loading": "Loading…",
@@ -81,7 +82,8 @@
     "search-inside-the-popup": "Search inside the popup",
     "start-typing-to-filter": "Start typing to filter.",
     "strawberry": "Strawberry",
-    "type-to-search": "Type to search."
+    "type-to-search": "Type to search.",
+    "view-all-fruits": "View all fruits"
   },
   "command-bar": {
     "applicants": "Applicants",

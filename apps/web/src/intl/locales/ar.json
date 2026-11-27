@@ -70,6 +70,7 @@
     "apricot": "مشمش",
     "async": "غير متزامن",
     "blueberry": "توت أزرق",
+    "footer": "التذييل",
     "grape": "عنب",
     "lemon": "ليمون",
     "loading": "جارٍ التحميل…",
@@ -81,7 +82,8 @@
     "search-inside-the-popup": "البحث داخل القائمة",
     "start-typing-to-filter": "ابدأ الكتابة للتصفية.",
     "strawberry": "فراولة",
-    "type-to-search": "اكتب للبحث."
+    "type-to-search": "اكتب للبحث.",
+    "view-all-fruits": "عرض كل الفواكه"
   },
   "command-bar": {
     "applicants": "المتقدمون",

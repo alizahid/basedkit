@@ -70,6 +70,7 @@
     "apricot": "Aprikose",
     "async": "Asynchron",
     "blueberry": "Blaubeere",
+    "footer": "Fußzeile",
     "grape": "Traube",
     "lemon": "Zitrone",
     "loading": "Lädt…",
@@ -81,7 +82,8 @@
     "search-inside-the-popup": "Suche im Popup",
     "start-typing-to-filter": "Tippe, um zu filtern.",
     "strawberry": "Erdbeere",
-    "type-to-search": "Tippe, um zu suchen."
+    "type-to-search": "Tippe, um zu suchen.",
+    "view-all-fruits": "Alle Früchte anzeigen"
   },
   "command-bar": {
     "applicants": "Bewerber",

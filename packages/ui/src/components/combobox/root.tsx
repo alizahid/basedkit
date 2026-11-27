@@ -4,10 +4,11 @@ import {
   Combobox as Component,
   type ComboboxRootProps as ComponentRootProps,
 } from '@base-ui/react/combobox'
+import { useRef } from 'react'
 
 import { type Size, SizeContext } from '#lib/size.js'
 
-import { MultipleContext } from './context.js'
+import { FooterContext, MultipleContext } from './context.js'
 
 export type ComboboxRootProps<
   Value,
@@ -21,10 +22,14 @@ export function Root<Value, Multiple extends boolean | undefined = false>({
   size = '2',
   ...props
 }: ComboboxRootProps<Value, Multiple>) {
+  const footer = useRef<HTMLDivElement>(null)
+
   return (
     <SizeContext value={size}>
       <MultipleContext value={Boolean(props.multiple)}>
-        <Component.Root isItemEqualToValue={isEqual} {...props} />
+        <FooterContext value={footer}>
+          <Component.Root isItemEqualToValue={isEqual} {...props} />
+        </FooterContext>
       </MultipleContext>
     </SizeContext>
   )

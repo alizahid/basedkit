@@ -5,9 +5,11 @@ import {
   type ComboboxInputProps as ComponentInputProps,
 } from '@base-ui/react/combobox'
 import * as stylex from '@stylexjs/stylex'
-import { type CSSProperties } from 'react'
+import { type CSSProperties, use } from 'react'
 
 import { merge } from '#lib/stylex.js'
+
+import { FooterContext, toFooter } from './context.js'
 
 export type ComboboxSearchProps = Omit<
   ComponentInputProps,
@@ -20,10 +22,17 @@ export type ComboboxSearchProps = Omit<
 // the filter input for inside the popup, used with Combobox.Trigger. pass it
 // to the content's `search`. unlike Combobox.Input it is not the anchor
 export function Search({ className, style, ...props }: ComboboxSearchProps) {
+  const footer = use(FooterContext)
+
   return (
     <div {...stylex.props(styles.main)}>
       <Component.Input
         {...props}
+        onKeyDown={(event) => {
+          props.onKeyDown?.(event)
+
+          toFooter(event, footer.current)
+        }}
         {...merge(stylex.props(styles.input), className, style)}
       />
     </div>

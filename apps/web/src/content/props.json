@@ -429,6 +429,10 @@
           "type": "ReactNode"
         },
         {
+          "name": "footer",
+          "type": "ReactNode"
+        },
+        {
           "name": "highContrast",
           "type": "boolean"
         },
@@ -802,7 +806,7 @@
           "type": "boolean"
         },
         {
-          "default": "'lg'",
+          "default": "'xl'",
           "name": "radius",
           "type": "'xs' | 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'"
         },

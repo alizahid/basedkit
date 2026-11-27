@@ -15,7 +15,7 @@ import { type RadiusToken, radii } from '#lib/radii.js'
 import { SizeContext } from '#lib/size.js'
 import { merge } from '#lib/stylex.js'
 
-import { MultipleContext } from './context.js'
+import { FooterContext, MultipleContext, toFooter } from './context.js'
 import { itemLabel } from './utils.js'
 
 export type ComboboxInputProps = Omit<
@@ -50,10 +50,16 @@ export function Input({
 }: ComboboxInputProps) {
   const size = use(SizeContext)
   const multiple = use(MultipleContext)
+  const footer = use(FooterContext)
 
   const field = (
     <Component.Input
       {...props}
+      onKeyDown={(event) => {
+        props.onKeyDown?.(event)
+
+        toFooter(event, footer.current)
+      }}
       {...stylex.props(input.input, multiple && chips.grow)}
     />
   )
