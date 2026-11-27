@@ -95,10 +95,10 @@ const styles = stylex.create({
     width: '100%',
   },
   main: {
-    aspectRatio: '1',
     containerType: 'size',
     display: 'inline-block',
-    // keeps its square in a flex row, as in radix
+    // keeps its square in a flex row, as in radix. the size sets the height
+    // as well as the width, so the row can't stretch it taller either
     flexShrink: 0,
     fontWeight: '500',
     overflow: 'hidden',
@@ -141,38 +141,47 @@ const contrast = stylex.create({
 const sizes = stylex.create({
   1: {
     borderRadius: 'var(--ui-radius-xs)',
+    height: 'calc(var(--ui-spacing) * 6)',
     width: 'calc(var(--ui-spacing) * 6)',
   },
   2: {
     borderRadius: 'var(--ui-radius-sm)',
+    height: 'calc(var(--ui-spacing) * 8)',
     width: 'calc(var(--ui-spacing) * 8)',
   },
   3: {
     borderRadius: 'var(--ui-radius-md)',
+    height: 'calc(var(--ui-spacing) * 10)',
     width: 'calc(var(--ui-spacing) * 10)',
   },
   4: {
     borderRadius: 'var(--ui-radius-lg)',
+    height: 'calc(var(--ui-spacing) * 12)',
     width: 'calc(var(--ui-spacing) * 12)',
   },
   5: {
     borderRadius: 'var(--ui-radius-xl)',
+    height: 'calc(var(--ui-spacing) * 16)',
     width: 'calc(var(--ui-spacing) * 16)',
   },
   6: {
     borderRadius: 'var(--ui-radius-2xl)',
+    height: 'calc(var(--ui-spacing) * 20)',
     width: 'calc(var(--ui-spacing) * 20)',
   },
   7: {
     borderRadius: 'var(--ui-radius-3xl)',
+    height: 'calc(var(--ui-spacing) * 24)',
     width: 'calc(var(--ui-spacing) * 24)',
   },
   8: {
     borderRadius: 'var(--ui-radius-4xl)',
+    height: 'calc(var(--ui-spacing) * 32)',
     width: 'calc(var(--ui-spacing) * 32)',
   },
   9: {
     borderRadius: 'calc(infinity * 1px)',
+    height: 'calc(var(--ui-spacing) * 40)',
     width: 'calc(var(--ui-spacing) * 40)',
   },
 })
