@@ -56,7 +56,9 @@ const styles = stylex.create({
     '--link-color': 'var(--accent-12)',
   },
   main: {
-    borderRadius: 'var(--ui-radius-sm)',
+    // for the focus ring. it is a line of text, so it follows the provider's
+    // radius down to square but no further up than the default
+    borderRadius: 'min(var(--ui-radius-sm), var(--ui-spacing))',
     color: 'var(--link-color, var(--accent-a11))',
     cursor: {
       ':is(:disabled, [data-disabled])': 'default',
