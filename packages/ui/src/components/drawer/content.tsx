@@ -217,6 +217,8 @@ const styles = stylex.create({
     },
   },
   content: {
+    // for an Inset inside, to reach the drawer's edges
+    '--inset-padding': 'calc(var(--ui-spacing) * 6)',
     // a column, so that what is inside can take the height left over
     // (flex-1) or sit at the end of the drawer (mt-auto)
     display: 'flex',
@@ -233,7 +235,7 @@ const styles = stylex.create({
       [inDown]: 'calc(var(--ui-spacing) * 4)',
       default: 'calc(var(--ui-spacing) * 6)',
     },
-    paddingInline: 'calc(var(--ui-spacing) * 6)',
+    paddingInline: 'var(--inset-padding)',
     transitionDuration: '300ms',
     transitionProperty: {
       [still]: 'none',

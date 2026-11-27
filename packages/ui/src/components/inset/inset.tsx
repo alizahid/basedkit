@@ -19,7 +19,7 @@ export type InsetProps = ComponentProps<'div'> & {
     | Array<'all' | 'bottom' | 'end' | 'start' | 'top' | 'x' | 'y'>
 }
 
-// lets its content reach the edges of the Card, Dialog, Popover or
+// lets its content reach the edges of the Card, Dialog, Drawer, Popover or
 // PreviewCard it is in: negative margins undo the container's padding on the
 // chosen sides, and a corner follows the container's where both of its edges
 // are reached. the container
