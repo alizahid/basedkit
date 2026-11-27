@@ -26,7 +26,7 @@ export function Content({
   children,
   className,
   inset = true,
-  radius = 'lg',
+  radius = 'xl',
   size = '2',
   style,
   ...props
