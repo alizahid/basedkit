@@ -3,7 +3,7 @@ import {
   type NumberFieldRootProps as ComponentProps,
 } from '@base-ui/react/number-field'
 import * as stylex from '@stylexjs/stylex'
-import { type CSSProperties } from 'react'
+import { type CSSProperties, type Ref } from 'react'
 
 import { type ColorToken } from '#lib/colors.js'
 import { icon, MinusIcon, PlusIcon } from '#lib/icons.js'
@@ -13,19 +13,21 @@ import { merge } from '#lib/stylex.js'
 
 export type NumberFieldProps = Omit<
   ComponentProps,
-  'className' | 'color' | 'style'
+  'className' | 'color' | 'ref' | 'style'
 > & {
   className?: string
   color?: ColorToken | 'gray'
   placeholder?: string
   radius?: RadiusToken
+  ref?: Ref<HTMLInputElement>
   size?: '1' | '2' | '3'
   style?: CSSProperties
   variant?: 'surface' | 'soft'
 }
 
 // the TextField look around base ui's number field. className and style go to
-// the visible wrapper, the label and placeholder to the input
+// the visible wrapper, the label, the placeholder and the ref to the input,
+// so focusing the ref focuses the field
 export function NumberField({
   'aria-label': label,
   'aria-labelledby': labelledBy,
@@ -33,6 +35,7 @@ export function NumberField({
   color,
   placeholder,
   radius,
+  ref,
   size = '2',
   style,
   variant = 'surface',
@@ -61,6 +64,7 @@ export function NumberField({
           aria-label={label}
           aria-labelledby={labelledBy}
           placeholder={placeholder}
+          ref={ref}
           {...stylex.props(input.input, styles.input)}
         />
 

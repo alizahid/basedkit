@@ -9,8 +9,10 @@ import {
   type CSSProperties,
   type DragEvent,
   type ComponentProps as ReactComponentProps,
+  type Ref,
   useEffect,
   useEffectEvent,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react'
@@ -22,6 +24,11 @@ import { input } from '#lib/input.js'
 import { type RadiusToken, radii } from '#lib/radii.js'
 import { merge } from '#lib/stylex.js'
 
+// what a ref to the field holds: not the input, as focusing it does more
+export type FileFieldHandle = {
+  focus: () => void
+}
+
 export type FileFieldProps = Omit<
   ReactComponentProps<'input'>,
   | 'children'
@@ -29,6 +36,7 @@ export type FileFieldProps = Omit<
   | 'color'
   | 'defaultValue'
   | 'placeholder'
+  | 'ref'
   | 'size'
   | 'style'
   | 'type'
@@ -45,6 +53,7 @@ export type FileFieldProps = Omit<
   onValueChange?: (files: Array<File>) => void
   placeholder?: string
   radius?: RadiusToken
+  ref?: Ref<FileFieldHandle>
   removeLabel?: string
   size?: '1' | '2' | '3'
   style?: CSSProperties
@@ -105,7 +114,8 @@ function key(file: File) {
 // `maxSize`, in bytes; the ones that fail go to `onReject`. it shows what was
 // picked: one file's name, or how many, with their size. with `multiple`,
 // new files add to the ones already there. className and style go to the
-// dropzone, a flex container; everything else goes to the input. `layout` only
+// dropzone, a flex container, and the ref is a handle that focuses the field;
+// everything else goes to the input. `layout` only
 // styles it: a `field` is a row as tall as a text field, a `zone` a padded box
 // with its content stacked in the middle
 export function FileField({
@@ -125,6 +135,7 @@ export function FileField({
   onValueChange,
   placeholder = 'Drop files here or click to browse',
   radius,
+  ref: forwarded,
   removeLabel = 'Remove',
   size: scale = '2',
   style,
@@ -133,6 +144,17 @@ export function FileField({
   ...props
 }: FileFieldProps) {
   const ref = useRef<HTMLInputElement>(null)
+
+  // a form library focuses the field that fails its validation. a focused
+  // file input shows nothing after a click on submit, so focusing the field
+  // also opens the picker, which browsers allow shortly after a click or a
+  // key press. while loading or disabled it only takes the focus
+  useImperativeHandle(forwarded, () => ({
+    focus() {
+      ref.current?.focus()
+      ref.current?.click()
+    },
+  }))
 
   const [own, setOwn] = useState<Array<File>>([])
   const [drag, setDrag] = useState<'over' | 'rejected'>()

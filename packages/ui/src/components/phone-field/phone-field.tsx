@@ -29,6 +29,7 @@ import {
 import { Item } from '#components/combobox/item.js'
 import { Root } from '#components/combobox/root.js'
 import { Search } from '#components/combobox/search.js'
+import { useRefs } from '#hooks/use-refs.js'
 import { type ColorToken } from '#lib/colors.js'
 import { ChevronDownIcon, icon } from '#lib/icons.js'
 import { input, inputSizes, inputVariants } from '#lib/input.js'
@@ -98,6 +99,7 @@ export function PhoneField({
   locale = 'en',
   onValueChange,
   radius,
+  ref: forwarded,
   searchPlaceholder = 'Search',
   side,
   sideOffset,
@@ -109,6 +111,8 @@ export function PhoneField({
 }: PhoneFieldProps) {
   const wrapper = useRef<HTMLDivElement>(null)
   const field = useRef<HTMLInputElement>(null)
+
+  const refs = useRefs(field, forwarded)
 
   // how many digits sit before the caret, to put it back after reformatting
   const caret = useRef<number | null>(null)
@@ -319,7 +323,7 @@ export function PhoneField({
 
           props.onFocus?.(event)
         }}
-        ref={field}
+        ref={refs}
         type="tel"
         value={state.text}
         {...stylex.props(input.input)}

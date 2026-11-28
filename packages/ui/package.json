@@ -15,6 +15,10 @@
       "types": "./src/components/*",
       "default": "./dist/components/*"
     },
+    "#hooks/*": {
+      "types": "./src/hooks/*",
+      "default": "./dist/hooks/*"
+    },
     "#lib/*": {
       "types": "./src/lib/*",
       "default": "./dist/lib/*"

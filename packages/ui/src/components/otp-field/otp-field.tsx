@@ -3,7 +3,7 @@ import {
   type OTPFieldRootProps as ComponentProps,
 } from '@base-ui/react/otp-field'
 import * as stylex from '@stylexjs/stylex'
-import { type CSSProperties } from 'react'
+import { type CSSProperties, type Ref } from 'react'
 
 import { type ColorToken } from '#lib/colors.js'
 import { inputVariants } from '#lib/input.js'
@@ -12,22 +12,25 @@ import { merge } from '#lib/stylex.js'
 
 export type OTPFieldProps = Omit<
   ComponentProps,
-  'className' | 'color' | 'style'
+  'className' | 'color' | 'ref' | 'style'
 > & {
   className?: string
   color?: ColorToken | 'gray'
   radius?: RadiusToken
+  ref?: Ref<HTMLInputElement>
   size?: '1' | '2' | '3'
   style?: CSSProperties
   variant?: 'surface' | 'soft'
 }
 
 // one box per character. label it with a Field or a <label>; base ui names
-// the boxes from that
+// the boxes from that. the ref is the first box, so focusing it focuses the
+// field
 export function OTPField({
   className,
   color,
   radius,
+  ref,
   size = '2',
   style,
   variant = 'surface',
@@ -56,6 +59,7 @@ export function OTPField({
           <Component.Input
             // biome-ignore lint/suspicious/noArrayIndexKey: boxes are identified by their index
             key={index}
+            ref={index === 0 ? ref : undefined}
             {...stylex.props(styles.input)}
           />
         ),
