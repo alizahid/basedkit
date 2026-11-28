@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.4 (2026-11-28)
+
+### Bug Fixes
+
+* drop a ghost Table's last line at the bottom of an Inset ([dfeb05a](https://github.com/alizahid/basedkit/commit/dfeb05a06e8f1c0ac560e7be447278b6eee0af1f))
+
 ## 0.4.3 (2026-11-27)
 
 ### Features
