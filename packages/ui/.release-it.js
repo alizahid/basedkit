@@ -29,7 +29,11 @@ export default {
       writerOpts: {
         // the changelog is the library's: commits for the docs site are left
         // out, even ones that touched a file here, and the rest lose their
-        // scope, which would say "ui" on every line
+        // scope, which would say "ui" on every line. breaking changes are
+        // notes with a commit of their own, so they get the same; their
+        // heading is the commit footer's keyword, in capitals, and their text
+        // is wrapped as the commit message was. every heading is in sentence
+        // case
         finalizeContext: (context) => ({
           ...context,
           commitGroups: context.commitGroups
@@ -41,8 +45,29 @@ export default {
                   ...commit,
                   scope: null,
                 })),
+              // "Bug Fixes" becomes "Bug fixes"
+              title: group.title.charAt(0) + group.title.slice(1).toLowerCase(),
             }))
             .filter((group) => group.commits.length > 0),
+          noteGroups: context.noteGroups
+            .map((group) => ({
+              ...group,
+              notes: group.notes
+                .filter((note) => note.commit.scope !== 'web')
+                .map((note) => ({
+                  ...note,
+                  commit: {
+                    ...note.commit,
+                    scope: null,
+                  },
+                  text: note.text.replace(/\s*\n\s*/gu, ' '),
+                })),
+              title:
+                group.title === 'BREAKING CHANGES'
+                  ? '⚠ Breaking changes'
+                  : group.title,
+            }))
+            .filter((group) => group.notes.length > 0),
         }),
       },
     },

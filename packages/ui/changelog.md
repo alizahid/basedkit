@@ -2,26 +2,23 @@
 
 ## 0.4.6 (2026-11-28)
 
-### ⚠ BREAKING CHANGES
+### ⚠ Breaking changes
 
-* **ui:** the ref of a NumberField or an OTPField is the input, not
-  the wrapper. The ref of a FileField is a FileFieldHandle, not the input,
-  so react-hook-form's register no longer works on it; use Controller.
+* the ref of a NumberField or an OTPField is the input, not the wrapper. The ref of a FileField is a FileFieldHandle, not the input, so react-hook-form's register no longer works on it; use Controller.
 
 ### Features
 
 * pass refs through to the control a form library focuses ([f1b5485](https://github.com/alizahid/basedkit/commit/f1b54858adfff119d37a8d928c955a1cef6a9364))
 
-### Bug Fixes
+### Bug fixes
 
 * draw the Slider's focus ring on the thumb's edge ([bb27dc4](https://github.com/alizahid/basedkit/commit/bb27dc4c2d98300facb86df531b7df7c0a0d5a6a))
 
 ## 0.4.5 (2026-11-28)
 
-### ⚠ BREAKING CHANGES
+### ⚠ Breaking changes
 
-* **ui:** the text of an empty field is the placeholder prop;
-  children is removed.
+* the text of an empty field is the placeholder prop; children is removed.
 
 ### Features
 
@@ -29,7 +26,7 @@
 
 ## 0.4.4 (2026-11-28)
 
-### Bug Fixes
+### Bug fixes
 
 * drop a ghost Table's last line at the bottom of an Inset ([dfeb05a](https://github.com/alizahid/basedkit/commit/dfeb05a06e8f1c0ac560e7be447278b6eee0af1f))
 
@@ -40,7 +37,7 @@
 * lay out Drawer.Content as a flex column ([f52a705](https://github.com/alizahid/basedkit/commit/f52a7051847fa275c6b0e235860e920ad70c0410))
 * make links in a Callout high contrast by default ([4dd379c](https://github.com/alizahid/basedkit/commit/4dd379cb9bd4160236e86942d5ed33b920770a8d))
 
-### Bug Fixes
+### Bug fixes
 
 * let an Inset reach the edges of a Drawer ([9104873](https://github.com/alizahid/basedkit/commit/910487374b988f9cc9ac3e3514ebbeece83e03a8))
 
@@ -50,7 +47,7 @@
 
 * add align to Table.Root and Table.Row ([cc98792](https://github.com/alizahid/basedkit/commit/cc9879297e80ccbcc7310496a04d2bd054796762))
 
-### Bug Fixes
+### Bug fixes
 
 * hide the popup of a Select with no items ([aed61c0](https://github.com/alizahid/basedkit/commit/aed61c066800cccc640e26fe2b35ad86bc2a9c8e))
 
@@ -73,7 +70,7 @@
 * give the Drawer a fixed radius and a radius prop ([a683460](https://github.com/alizahid/basedkit/commit/a683460d86343b49bd68902b1bb85609f91c1ee5))
 * round a Toolbar's controls to follow its corners ([9397ee6](https://github.com/alizahid/basedkit/commit/9397ee6f3366ee02bc3e547939a48d06f409dc3f))
 
-### Bug Fixes
+### Bug fixes
 
 * keep the Avatar square when a flex row stretches it ([4519562](https://github.com/alizahid/basedkit/commit/45195629e19afda510a3ac8515f6bd8a88f37093))
 
@@ -85,7 +82,7 @@
 * centre the Stepper's content at the width of its steps ([6de3c2f](https://github.com/alizahid/basedkit/commit/6de3c2f9f31e817ba9899018ef0f9713ea9e3098))
 * color the Stepper's focus rings like their steps ([c9a2682](https://github.com/alizahid/basedkit/commit/c9a2682ca7bb035e95867f892297e20d5cb1a859))
 
-### Bug Fixes
+### Bug fixes
 
 * draw button, trigger and card focus rings above their content ([69f478f](https://github.com/alizahid/basedkit/commit/69f478f88ec5e1fc5da9173819ec98afc341054d))
 
@@ -100,7 +97,7 @@
 * scroll Tabs and TabNav sideways when they don't fit ([15fc96a](https://github.com/alizahid/basedkit/commit/15fc96ae5921dc65147846bbc8ca0d6329b1dd20))
 * size the input beside chips to its placeholder ([32c9d4a](https://github.com/alizahid/basedkit/commit/32c9d4a744380ac5ffe778a887197b37399ccb9a))
 
-### Bug Fixes
+### Bug fixes
 
 * draw focus rings as shadows so their edges stay sharp ([7898908](https://github.com/alizahid/basedkit/commit/789890801f9a60d0a2258dcbaa293a701bab510d))
 * give the Stepper's focus ring the same room on every side ([d4dcb9d](https://github.com/alizahid/basedkit/commit/d4dcb9d7f1f7ac8e1e0aa09728fad125a86b5e60))
@@ -118,7 +115,7 @@
 * round nested elements less than what holds them ([77c0169](https://github.com/alizahid/basedkit/commit/77c016966ac738625ae7d8dbbc9bcc320ccf23d2))
 * tighten Field and shrink its hint and error ([68eb020](https://github.com/alizahid/basedkit/commit/68eb0206f147939fa69fd40b17cc5196332cbdb6))
 
-### Bug Fixes
+### Bug fixes
 
 * give the ghost accordion's focus ring room around the text ([4cc94c6](https://github.com/alizahid/basedkit/commit/4cc94c6180d15628184b2f417bd517c0e5096246))
 
@@ -136,7 +133,7 @@
 * clear DateField and FileField with escape ([4678033](https://github.com/alizahid/basedkit/commit/467803317d3fbc7b854616514e97890bf04c6381))
 * tint the ring of solid toasts ([12317e0](https://github.com/alizahid/basedkit/commit/12317e081dc33e5aef8adb4089d465c87511b88c))
 
-### Bug Fixes
+### Bug fixes
 
 * size the calendar's month arrows ([5500b5b](https://github.com/alizahid/basedkit/commit/5500b5bfcf2f7cf4b10680cca6e154aa2677ee99))
 
@@ -148,7 +145,7 @@
 * add a radius prop to BaseProvider ([73a6d2c](https://github.com/alizahid/basedkit/commit/73a6d2c3a90faf5f0d741e59b941608b1aebae10))
 * sit button icons closer to the edge ([c6f7a12](https://github.com/alizahid/basedkit/commit/c6f7a120c676acea5753fd91ce8a781d8b212a98))
 
-### Bug Fixes
+### Bug fixes
 
 * fill the screen under safari's bars on ios ([26362af](https://github.com/alizahid/basedkit/commit/26362afc2127207d93ac0005e21ffc89ea2dfeaf))
 * give Badge the default cursor ([ab00979](https://github.com/alizahid/basedkit/commit/ab00979fc5bc2f95c6b7312e8b9cf66e51fe3b7d))
@@ -201,7 +198,7 @@
 * add Tooltip, Popover and HoverCard ([9af08cb](https://github.com/alizahid/base-ui/commit/9af08cb17cde25a3649c6e47734d2134c138b0c9))
 * add useCopy, useLocalState and useRefs hooks ([1e8492b](https://github.com/alizahid/base-ui/commit/1e8492b31306f7d436aa8498fe738e2c3d001b5e))
 
-### Bug Fixes
+### Bug fixes
 
 * keep Select popup covering the trigger's far edge ([e997cdd](https://github.com/alizahid/base-ui/commit/e997cddc1afed7456a757a8bfbb551c82b1c47f7))
 * pin Drawer to its edge in right-to-left layouts ([6853104](https://github.com/alizahid/base-ui/commit/6853104e7e09a16d0816c8a4dcf3b429abbf082e))
