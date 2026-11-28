@@ -224,10 +224,12 @@
     "attachments": "Attachments",
     "count-files": "{count} files",
     "drop-a-file": "Drop a file here or click to browse",
+    "drop-a-pdf": "Drop a PDF here or click to browse",
     "drop-files": "Drop files here or click to browse",
     "drop-images": "Drop images here or click to browse",
+    "drop-pdfs": "Drop PDFs here or click to browse",
     "layout": "Layout",
-    "up-to-10-mb-each": "Up to 10 MB each."
+    "pdfs-up-to-10-mb-each": "PDFs, up to 10 MB each."
   },
   "header": {
     "close": "Close",

@@ -224,10 +224,12 @@
     "attachments": "Anhänge",
     "count-files": "{count} Dateien",
     "drop-a-file": "Datei hier ablegen oder klicken, um sie auszuwählen",
+    "drop-a-pdf": "PDF hier ablegen oder klicken, um es auszuwählen",
     "drop-files": "Dateien hier ablegen oder klicken, um sie auszuwählen",
     "drop-images": "Bilder hier ablegen oder klicken, um sie auszuwählen",
+    "drop-pdfs": "PDFs hier ablegen oder klicken, um sie auszuwählen",
     "layout": "Layout",
-    "up-to-10-mb-each": "Jeweils bis zu 10 MB."
+    "pdfs-up-to-10-mb-each": "PDFs, jeweils bis zu 10 MB."
   },
   "header": {
     "close": "Schließen",

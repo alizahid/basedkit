@@ -854,11 +854,6 @@
       "name": "FileField",
       "props": [
         {
-          "default": "'Drop files here or click to browse'",
-          "name": "children",
-          "type": "ReactNode"
-        },
-        {
           "name": "color",
           "type": "ColorToken | 'gray'"
         },
@@ -882,8 +877,21 @@
           "type": "string"
         },
         {
+          "name": "maxSize",
+          "type": "number"
+        },
+        {
+          "name": "onReject",
+          "type": "(files: Array<File>) => void"
+        },
+        {
           "name": "onValueChange",
           "type": "(files: Array<File>) => void"
+        },
+        {
+          "default": "'Drop files here or click to browse'",
+          "name": "placeholder",
+          "type": "string"
         },
         {
           "name": "radius",
