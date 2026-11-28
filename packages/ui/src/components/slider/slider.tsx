@@ -151,7 +151,6 @@ const styles = stylex.create({
       ':has(:focus-visible)': '2px solid var(--focus-8)',
       default: 'none',
     },
-    outlineOffset: 2,
     width: 'var(--slider-size)',
   },
   track: {
