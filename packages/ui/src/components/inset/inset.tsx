@@ -65,6 +65,7 @@ const styles = stylex.create({
   // from an Inset further up
   main: {
     '--inset-end': 'initial',
+    '--inset-last-row': 'initial',
     '--inset-start': 'initial',
     overflow: 'hidden',
   },
@@ -96,7 +97,10 @@ const sides = {
 } as const
 
 const margins = stylex.create({
+  // the container's border is right below, so a ghost Table inside drops the
+  // line under its last row. radix keeps it, and the two lines double up
   bottom: {
+    '--inset-last-row': 'none',
     marginBlockEnd: 'var(--inset-margin)',
   },
   end: {

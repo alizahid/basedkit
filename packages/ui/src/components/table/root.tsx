@@ -96,7 +96,12 @@ const styles = stylex.create({
 const variants = stylex.create({
   ghost: {
     '--table-header': 'transparent',
-    '--table-last-row': 'inset 0 -1px var(--gray-a5)',
+    // no line under the last row when the table ends an Inset that reaches
+    // the container's bottom edge: the container's border is right there
+    '--table-last-row': {
+      ':last-child': 'var(--inset-last-row, inset 0 -1px var(--gray-a5))',
+      default: 'inset 0 -1px var(--gray-a5)',
+    },
   },
   surface: {
     '--table-header': 'var(--gray-a2)',
