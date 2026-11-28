@@ -134,6 +134,76 @@ export const generateMetadata = title('inset')
       </Table.Root>
     </Inset>
   </Card>
+
+  <Card className="w-full max-w-xl" size="3">
+    <div className="mb-4 text-sm font-medium"><Text id="table.group" /></div>
+
+    <Inset side={['x', 'bottom']}>
+      <Table.Root variant="ghost">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeaderCell><Text id="table.full-name" /></Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell><Text id="common.email" /></Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell><Text id="table.group" /></Table.ColumnHeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          <Table.Row>
+            <Table.RowHeaderCell>Danilo Sousa</Table.RowHeaderCell>
+            <Table.Cell>danilo@example.com</Table.Cell>
+            <Table.Cell><Text id="table.developer" /></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
+            <Table.Cell>zahra@example.com</Table.Cell>
+            <Table.Cell><Text id="table.admin" /></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.RowHeaderCell>Jasper Eriksson</Table.RowHeaderCell>
+            <Table.Cell>jasper@example.com</Table.Cell>
+            <Table.Cell><Text id="table.developer" /></Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table.Root>
+    </Inset>
+  </Card>
+
+  <Card className="w-full max-w-xl" size="3">
+    <div className="mb-4 text-sm font-medium"><Text id="table.group" /></div>
+
+    <Inset side={['x', 'bottom']}>
+      <Table.Root variant="ghost">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeaderCell><Text id="table.full-name" /></Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell><Text id="common.email" /></Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell><Text id="table.group" /></Table.ColumnHeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          <Table.Row>
+            <Table.RowHeaderCell>Danilo Sousa</Table.RowHeaderCell>
+            <Table.Cell>danilo@example.com</Table.Cell>
+            <Table.Cell><Text id="table.developer" /></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
+            <Table.Cell>zahra@example.com</Table.Cell>
+            <Table.Cell><Text id="table.admin" /></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.RowHeaderCell>Jasper Eriksson</Table.RowHeaderCell>
+            <Table.Cell>jasper@example.com</Table.Cell>
+            <Table.Cell><Text id="table.developer" /></Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table.Root>
+
+      <div className="px-6 py-3 text-sm text-(--gray-a11)"><Text id="table.with-other-components" /></div>
+    </Inset>
+  </Card>
 </Example>
 
 <Props page="inset" />
