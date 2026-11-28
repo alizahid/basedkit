@@ -9,8 +9,8 @@ import {
   type CSSProperties,
   type DragEvent,
   type ComponentProps as ReactComponentProps,
-  type ReactNode,
   useEffect,
+  useEffectEvent,
   useRef,
   useState,
 } from 'react'
@@ -28,19 +28,22 @@ export type FileFieldProps = Omit<
   | 'className'
   | 'color'
   | 'defaultValue'
+  | 'placeholder'
   | 'size'
   | 'style'
   | 'type'
   | 'value'
 > & {
-  children?: ReactNode
   className?: string
   color?: ColorToken | 'gray'
   filesLabel?: string
   layout?: 'field' | 'zone'
   loading?: boolean
   locale?: string
+  maxSize?: number
+  onReject?: (files: Array<File>) => void
   onValueChange?: (files: Array<File>) => void
+  placeholder?: string
   radius?: RadiusToken
   removeLabel?: string
   size?: '1' | '2' | '3'
@@ -98,15 +101,15 @@ function key(file: File) {
 // a dropzone over a native file input, as tall as a text field. the input
 // covers the dropzone, so clicking, the keyboard, dropping and form submission
 // are the browser's own; this adds the drag states, checks dropped files
-// against `accept`, which browsers only apply to the picker, and shows what
-// was picked: one file's name, or how many, with their size. with `multiple`,
+// against `accept`, which browsers only apply to the picker, and against
+// `maxSize`, in bytes; the ones that fail go to `onReject`. it shows what was
+// picked: one file's name, or how many, with their size. with `multiple`,
 // new files add to the ones already there. className and style go to the
 // dropzone, a flex container; everything else goes to the input. `layout` only
 // styles it: a `field` is a row as tall as a text field, a `zone` a padded box
 // with its content stacked in the middle
 export function FileField({
   accept,
-  children = 'Drop files here or click to browse',
   className,
   color,
   disabled,
@@ -116,8 +119,11 @@ export function FileField({
   layout = 'field',
   loading = false,
   locale,
+  maxSize = Number.POSITIVE_INFINITY,
   multiple,
+  onReject,
   onValueChange,
+  placeholder = 'Drop files here or click to browse',
   radius,
   removeLabel = 'Remove',
   size: scale = '2',
@@ -157,20 +163,29 @@ export function FileField({
     }
   }
 
+  // a controlled field's input follows `value`, also when the parent turns
+  // the change down
   const commit = (next: Array<File>) => {
-    write(next)
+    write(value ?? next)
     setOwn(next)
     onValueChange?.(next)
   }
 
-  const add = (list: Iterable<File>) => {
-    if (loading) {
+  const add = (list: Iterable<File>, folders: Array<File> = []) => {
+    if (loading || disabled) {
       return
     }
 
-    const picked = [...list].filter((file) =>
-      accepts(accept, file.type, file.name),
+    const all = [...list]
+
+    const picked = all.filter(
+      (file) => accepts(accept, file.type, file.name) && file.size <= maxSize,
     )
+
+    const rejected = [
+      ...folders,
+      ...all.filter((file) => !picked.includes(file)),
+    ]
 
     const next = multiple
       ? [
@@ -180,7 +195,33 @@ export function FileField({
 
     // dropping only files that aren't accepted changes nothing
     commit(picked.length > 0 ? next : files)
+
+    if (rejected.length > 0) {
+      onReject?.(rejected)
+    }
   }
+
+  // a form's reset empties the input, and react resets a form after its action
+  const reset = useEffectEvent(() => {
+    if (files.length > 0) {
+      setOwn([])
+      onValueChange?.([])
+    }
+  })
+
+  useEffect(() => {
+    const form = ref.current?.form
+
+    const listener = () => {
+      reset()
+    }
+
+    form?.addEventListener('reset', listener)
+
+    return () => {
+      form?.removeEventListener('reset', listener)
+    }
+  }, [])
 
   // a controlled value is written to the input too
   // biome-ignore lint/correctness/useExhaustiveDependencies: write only reads the ref
@@ -190,23 +231,54 @@ export function FileField({
     }
   }, [value])
 
-  const over = (event: DragEvent<HTMLInputElement>) => {
+  // the drag events are the dropzone's, so the remove button over the input
+  // is part of it. on every dragover, which also allows the drop: a dragleave
+  // between the input and the button can't leave the state behind
+  const over = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault()
+
     const items = [...event.dataTransfer.items].filter(
       (item) => item.kind === 'file',
     )
 
-    if (loading) {
+    // dragged text isn't a file
+    if (loading || disabled || items.length === 0) {
       return
     }
 
     setDrag(
-      items.length > 0 && items.every((item) => !accepts(accept, item.type))
-        ? 'rejected'
-        : 'over',
+      items.every((item) => !accepts(accept, item.type)) ? 'rejected' : 'over',
     )
   }
 
+  const drop = (event: DragEvent<HTMLDivElement>) => {
+    // the browser would replace the files, accepted or not, or open one
+    // dropped on the remove button
+    event.preventDefault()
+
+    setDrag(undefined)
+
+    // a dropped folder comes as a file with nothing in it. the file items are
+    // in the order of the files
+    const folders = [...event.dataTransfer.items]
+      .filter((item) => item.kind === 'file')
+      .map((item) => item.webkitGetAsEntry?.()?.isDirectory ?? false)
+
+    const dropped = [...event.dataTransfer.files]
+
+    add(
+      dropped.filter((_, index) => !folders[index]),
+      dropped.filter((_, index) => folders[index]),
+    )
+  }
+
+  // the browser's tooltip for an empty file input is its own "No file chosen":
+  // an empty title hides it. with files it lists their names, and stays
+  const title = props.title ?? (files.length > 0 ? undefined : '')
+
   return (
+    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: only the drag events, which have no keyboard; the input inside is the control
+    // biome-ignore lint/a11y/noStaticElementInteractions: as above
     <div
       aria-busy={loading || undefined}
       data-accent={color}
@@ -214,6 +286,13 @@ export function FileField({
       data-filled={files.length > 0 ? '' : undefined}
       data-loading={loading ? '' : undefined}
       data-rejected={drag === 'rejected' ? '' : undefined}
+      onDragLeave={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setDrag(undefined)
+        }
+      }}
+      onDragOver={over}
+      onDrop={drop}
       {...merge(
         stylex.props(
           styles.main,
@@ -244,7 +323,7 @@ export function FileField({
           </span>
         </span>
       ) : (
-        <span {...stylex.props(styles.text)}>{children}</span>
+        <span {...stylex.props(styles.text)}>{placeholder}</span>
       )}
 
       <Component
@@ -266,17 +345,6 @@ export function FileField({
             event.preventDefault()
           }
         }}
-        onDragEnter={over}
-        onDragLeave={() => {
-          setDrag(undefined)
-        }}
-        onDrop={(event) => {
-          // the browser would replace the files, accepted or not
-          event.preventDefault()
-
-          setDrag(undefined)
-          add(event.dataTransfer.files)
-        }}
         // escape removes the files, as in a combobox. the event stops here,
         // so a dialog around the field stays open
         onKeyDown={(event) => {
@@ -290,6 +358,7 @@ export function FileField({
         }}
         ref={ref}
         render={<input type="file" />}
+        title={title}
         {...stylex.props(styles.input)}
       />
 
@@ -318,7 +387,8 @@ export function FileField({
 }
 
 // stylex doesn't order these against each other, so they must not overlap.
-// in order: disabled, a rejected drag, an accepted drag, invalid, hover
+// in order: disabled, a rejected drag, in red, an accepted drag, in green,
+// invalid, hover
 const off = ':has(input:disabled)'
 const rejected = ':is([data-rejected]):not(:has(input:disabled))'
 const dragging = ':is([data-dragging]):not(:has(input:disabled))'
@@ -349,13 +419,13 @@ const styles = stylex.create({
     '--file-field-icon': 'calc(1lh - var(--ui-spacing))',
     alignItems: 'center',
     backgroundColor: {
-      [dragging]: 'var(--accent-a3)',
+      [dragging]: 'var(--green-a3)',
       [off]: 'var(--gray-a3)',
       [rejected]: 'var(--red-a3)',
       default: 'var(--file-field-background)',
     },
     borderColor: {
-      [dragging]: 'var(--accent-8)',
+      [dragging]: 'var(--green-8)',
       [hover]: {
         '@media (hover: hover)': 'var(--file-field-border-hover)',
         default: null,
@@ -369,6 +439,7 @@ const styles = stylex.create({
     borderStyle: 'solid',
     borderWidth: 1,
     color: {
+      [dragging]: 'var(--green-a11)',
       [off]: 'var(--gray-a9)',
       [rejected]: 'var(--red-a11)',
       default: 'var(--file-field-color)',
