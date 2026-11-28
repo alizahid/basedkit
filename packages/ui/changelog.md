@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.5 (2026-11-28)
+
+### ⚠ BREAKING CHANGES
+
+* **ui:** the text of an empty field is the placeholder prop;
+  children is removed.
+
+### Features
+
+* validate FileField drops and take a placeholder ([f9c1e7d](https://github.com/alizahid/basedkit/commit/f9c1e7df00542586b13218654a7d82e5e0dc56f8))
+
 ## 0.4.4 (2026-11-28)
 
 ### Bug Fixes
