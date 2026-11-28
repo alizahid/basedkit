@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.6 (2026-11-28)
+
+### ⚠ BREAKING CHANGES
+
+* **ui:** the ref of a NumberField or an OTPField is the input, not
+  the wrapper. The ref of a FileField is a FileFieldHandle, not the input,
+  so react-hook-form's register no longer works on it; use Controller.
+
+### Features
+
+* pass refs through to the control a form library focuses ([f1b5485](https://github.com/alizahid/basedkit/commit/f1b54858adfff119d37a8d928c955a1cef6a9364))
+
+### Bug Fixes
+
+* draw the Slider's focus ring on the thumb's edge ([bb27dc4](https://github.com/alizahid/basedkit/commit/bb27dc4c2d98300facb86df531b7df7c0a0d5a6a))
+
 ## 0.4.5 (2026-11-28)
 
 ### ⚠ BREAKING CHANGES
